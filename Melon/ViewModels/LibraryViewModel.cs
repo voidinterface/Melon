@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -29,14 +30,21 @@ namespace Melon.ViewModels
         {
             if (value is not null)
             {
-                _player.stop();
-                _player.playSong(value.Path);
+                _player.CurrentSong = value.ToSongModel();
             }
         }
 
         public LibraryViewModel()
         {
-            _player = new NAudioPlayerService();
+            if (Design.IsDesignMode)
+            {
+                _player = new MockPlayerService();
+            }
+            else
+            {
+                throw new InvalidOperationException("This constructor should only be used in design mode.");
+            }
+                
         }
 
         public LibraryViewModel(IPlayerService player)

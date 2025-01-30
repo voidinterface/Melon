@@ -28,12 +28,15 @@ public partial class App : Application
 
         var collection = new ServiceCollection();
         collection.AddSingleton<MainViewModel>();
+        collection.AddTransient<PlaybackControlsViewModel>();
         collection.AddTransient<LibraryCatalogViewModel>();
         collection.AddTransient<PlaylistCatalogViewModel>();
         collection.AddTransient<LibraryViewModel>();
 
-        collection.AddTransient<PlaylistCatalogView>();
+        collection.AddSingleton<IMessenger, StrongReferenceMessenger>();
+        collection.AddSingleton<IPlayerService, NAudioPlayerService>();
 
+        collection.AddSingleton<PageFactory>();
         collection.AddSingleton<Func<ApplicationPageNames, PageViewModel>>(x => name => name switch
         {
             ApplicationPageNames.Library => x.GetRequiredService<LibraryCatalogViewModel>(),
@@ -41,10 +44,8 @@ public partial class App : Application
             _ => throw new ArgumentException("Invalid page name", nameof(name))
         });
 
-        collection.AddSingleton<PageFactory>();
-
-        collection.AddSingleton<IMessenger, StrongReferenceMessenger>();
-        collection.AddSingleton<IPlayerService, NAudioPlayerService>();
+        collection.AddSingleton<LibraryFactory>();
+        collection.AddSingleton<Func<LibraryViewModel>>(x => () => x.GetRequiredService<LibraryViewModel>());
 
         var services = collection.BuildServiceProvider();
         

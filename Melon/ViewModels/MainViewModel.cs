@@ -14,6 +14,9 @@ public partial class MainViewModel : ViewModelBase
     [ObservableProperty]
     private ViewModelBase _currentView = null!;
 
+    [ObservableProperty]
+    private ViewModelBase _playbackControls;
+
     private readonly PageFactory _pageFactory = null!;
 
     private IMessenger _messenger;
@@ -24,6 +27,7 @@ public partial class MainViewModel : ViewModelBase
         {
             _messenger = new WeakReferenceMessenger();
             CurrentView = new PlaylistCatalogViewModel();
+            _playbackControls = new PlaybackControlsViewModel();
         }
         else
         {
@@ -31,7 +35,7 @@ public partial class MainViewModel : ViewModelBase
         }
     }
 
-    public MainViewModel(PageFactory pageFactory, IMessenger messenger)
+    public MainViewModel(PageFactory pageFactory, IMessenger messenger, PlaybackControlsViewModel playbackControls)
     {
         _pageFactory = pageFactory;
 
@@ -40,6 +44,8 @@ public partial class MainViewModel : ViewModelBase
         {
             NavigateToView(message.Value);
         });
+
+        _playbackControls = playbackControls;
 
         NavigateToPage(ApplicationPageNames.Library);
     }

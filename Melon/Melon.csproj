@@ -30,6 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\PlaybackControlsView.axaml.cs">
+      <DependentUpon>PlaybackControlsView.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\LibraryCatalogView.axaml.cs">
       <DependentUpon>LibraryCatalogView.axaml</DependentUpon>
     </Compile>

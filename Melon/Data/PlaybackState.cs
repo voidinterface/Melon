@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Melon.Models
+namespace Melon.Data
 {
-    public class Song
+    public enum PlaybackState
     {
-        public string? Path { get; set; }
+        Stopped,
+        Playing,
+        Paused,
     }
 }

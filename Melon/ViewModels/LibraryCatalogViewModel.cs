@@ -12,6 +12,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Melon.Core;
 using Melon.Data;
+using Melon.Factories;
 
 namespace Melon.ViewModels
 {
@@ -22,6 +23,7 @@ namespace Melon.ViewModels
         public ObservableCollection<LibraryViewModel> Libraries { get; } = [];
 
         private readonly IMessenger _messenger;
+        private readonly LibraryFactory _libraryFactory = null!;
 
         [ObservableProperty]
         private LibraryViewModel? _selectedLibrary;
@@ -39,8 +41,6 @@ namespace Melon.ViewModels
             {
                 _messenger = new WeakReferenceMessenger();
 
-                Libraries.Add(new LibraryViewModel { Path = "Library 1" });
-                Libraries.Add(new LibraryViewModel { Path = "Library 2" });
             }
             else
             {
@@ -48,13 +48,12 @@ namespace Melon.ViewModels
             }
         }
 
-        public LibraryCatalogViewModel(IMessenger messenger)
+        public LibraryCatalogViewModel(IMessenger messenger, LibraryFactory libraryFactory)
         {
             PageName = ApplicationPageNames.Library;
             _messenger = messenger;
 
-            Libraries.Add(new LibraryViewModel { Path = "Library 1" });
-            Libraries.Add(new LibraryViewModel { Path = "Library 2" });
+            _libraryFactory = libraryFactory;
         }
 
         [RelayCommand]
@@ -73,7 +72,7 @@ namespace Melon.ViewModels
 
             if (path is not null)
             {
-                Libraries.Add(new LibraryViewModel { Path = path.ToString() });
+                Libraries.Add(_libraryFactory.GetLibraryViewModel(c => c.Path = path.ToString()));
             }
         }
 

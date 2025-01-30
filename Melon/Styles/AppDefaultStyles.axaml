@@ -22,7 +22,7 @@
 
 	<Style Selector="Label.fa-icon">
 		<Setter Property="FontFamily" Value="{DynamicResource FontAwesome}"></Setter>
-		<Setter Property="Margin" Value="0 3 5 0"></Setter>
+		<Setter Property="Margin" Value="0 3 0 0"></Setter>
 	</Style>
 
 	<Style Selector="Button:pointerover /template/ ContentPresenter">
