@@ -59,6 +59,7 @@ namespace Melon.Services
             _state = Data.PlaybackState.Stopped;
             _messenger.Send(new PlaybackStateChangedMessage(_state));
 
+            outputDevice.Stop();
             audioFile?.Dispose();
 
             //TODO: Handle invalid file paths or null
