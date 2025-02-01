@@ -15,6 +15,8 @@ namespace Melon.Services
         public float Gain { get; set; }
         public PlaybackState State { get; }
         public Song? CurrentSong { get; set; }
+        public TimeSpan Position { get; set;  }
+        public TimeSpan TotalDuration { get; }
 
         public void Stop();
         public void Pause();

@@ -17,6 +17,9 @@ namespace Melon.Services
         public float Gain { get; set; }
         public PlaybackState State => PlaybackState.Stopped;
         public Song? CurrentSong { get; set ; }
+        public TimeSpan Position { get; set; } = TimeSpan.Zero;
+
+        public TimeSpan TotalDuration => TimeSpan.FromMinutes(3d);
 
         public void Pause() { }
 

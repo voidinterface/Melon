@@ -34,6 +34,20 @@ namespace Melon.Services
             }
         }
 
+        public TimeSpan Position
+        {
+            get => audioFile?.CurrentTime ?? TimeSpan.Zero;
+            set
+            {
+                if (audioFile != null)
+                {
+                    audioFile.CurrentTime = value;
+                }
+            }
+        }
+
+        public TimeSpan TotalDuration => audioFile?.TotalTime ?? TimeSpan.Zero;
+
         private float _gain;
         public float Gain
         {
