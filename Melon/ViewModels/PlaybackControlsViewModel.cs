@@ -47,10 +47,14 @@ namespace Melon.ViewModels
             set
             {
                 _seekValue = value;
+                OnPropertyChanged(nameof(PositionString));
             }
         }
 
-        public string PositionString => Position.ToString(@"mm\:ss");
+        public string PositionString =>
+            _isSeeking 
+                ? TimeSpan.FromSeconds(_seekValue).ToString(@"mm\:ss")
+                : Position.ToString(@"mm\:ss");
 
         public string DurationString => Duration.ToString(@"mm\:ss");
 
