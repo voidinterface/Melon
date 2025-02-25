@@ -11,45 +11,35 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="11.2.3" />
+    <PackageReference Include="Avalonia" Version="11.2.4" />
     <PackageReference Include="Avalonia.Svg.Skia" Version="11.2.0.2" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.3" />
-    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.3" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.4" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.4" />
     <PackageReference Include="Avalonia.Xaml.Behaviors" Version="11.2.0.8" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.2.3" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.1" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.2.4" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.2" />
     <PackageReference Include="NAudio" Version="2.2.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <AvaloniaXaml Update="Views\PlaylistCatalogView.axaml">
-      <SubType>Designer</SubType>
-    </AvaloniaXaml>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Views\PlaybackControlsView.axaml.cs">
-      <DependentUpon>PlaybackControlsView.axaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\LibraryCatalogView.axaml.cs">
-      <DependentUpon>LibraryCatalogView.axaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\LibraryView.axaml.cs">
-      <DependentUpon>LibraryView.axaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\PlaylistView.axaml.cs">
-      <DependentUpon>PlaylistView.axaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\PlaylistCatalogView.axaml.cs">
-      <SubType>Code</SubType>
-      <DependentUpon>PlaylistCatalogView.axaml</DependentUpon>
+    <Compile Update="Features\Playback\PlaybackControlsBar\PlaybackControlsBarView.axaml.cs">
+      <DependentUpon>PlaybackControlsBarView.axaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Behaviors\" />
+    <Folder Include="Common\Behaviors\" />
+    <Folder Include="Features\Settings\" />
+    <Folder Include="Features\Songs\" />
   </ItemGroup>
 </Project>

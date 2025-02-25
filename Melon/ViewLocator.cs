@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using Melon.ViewModels;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Melon
 {
@@ -27,7 +27,7 @@ namespace Melon
 
         public bool Match(object? data)
         {
-            return data is ViewModelBase;
+            return data is ObservableObject;
         }
     }
 }

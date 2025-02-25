@@ -4,12 +4,12 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 using CommunityToolkit.Mvvm.Messaging;
-using Melon.Data;
-using Melon.Factories;
-using Melon.Services;
-using Melon.ViewModels;
-using Melon.Views;
+using Melon.Features.Playback;
+using Melon.Features.Main;
 using Microsoft.Extensions.DependencyInjection;
+using Melon.Features.Libraries;
+using Melon.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace Melon;
 
@@ -27,25 +27,20 @@ public partial class App : Application
         BindingPlugins.DataValidators.RemoveAt(0);
 
         var collection = new ServiceCollection();
-        collection.AddSingleton<MainViewModel>();
-        collection.AddTransient<PlaybackControlsViewModel>();
-        collection.AddTransient<LibraryCatalogViewModel>();
-        collection.AddTransient<PlaylistCatalogViewModel>();
-        collection.AddTransient<LibraryViewModel>();
 
-        collection.AddSingleton<IMessenger, StrongReferenceMessenger>();
-        collection.AddSingleton<IPlayerService, NAudioPlayerService>();
+        collection.AddDbContext<MelonDbContext>(options =>
+            options.UseSqlite("Data Source=melon.db"));
 
-        collection.AddSingleton<PageFactory>();
-        collection.AddSingleton<Func<ApplicationPageNames, PageViewModel>>(x => name => name switch
+        collection.AddMediatR(cfg =>
         {
-            ApplicationPageNames.Library => x.GetRequiredService<LibraryCatalogViewModel>(),
-            ApplicationPageNames.Playlists => x.GetRequiredService<PlaylistCatalogViewModel>(),
-            _ => throw new ArgumentException("Invalid page name", nameof(name))
+            cfg.RegisterServicesFromAssembly(typeof(App).Assembly);
         });
 
-        collection.AddSingleton<LibraryFactory>();
-        collection.AddSingleton<Func<LibraryViewModel>>(x => () => x.GetRequiredService<LibraryViewModel>());
+        collection.AddLibraryFeature();
+
+        collection.AddPlaybackFeature();
+
+        collection.AddMainFeature();
 
         var services = collection.BuildServiceProvider();
         
