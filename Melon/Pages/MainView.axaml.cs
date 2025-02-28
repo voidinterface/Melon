@@ -1,6 +1,6 @@
 ﻿using Avalonia.Controls;
 
-namespace Melon.Features.Main;
+namespace Melon.Pages;
 
 public partial class MainView : UserControl
 {

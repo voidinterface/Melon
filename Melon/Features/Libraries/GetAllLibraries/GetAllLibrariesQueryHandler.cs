@@ -16,7 +16,6 @@ namespace Melon.Features.Libraries.GetAllLibraries
         private readonly MelonDbContext _db = db;
         public async Task<List<Library>> Handle(GetAllLibrariesQuery request, CancellationToken cancellationToken)
         {
-            //TODO: This should be viewmodel not model
             var libraries = await _db.Libraries
                 .OrderBy(l => l.LibraryId)
                 .ToListAsync(cancellationToken);

@@ -32,6 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Pages\Sidebar\SidebarView.axaml.cs">
+      <DependentUpon>SidebarView.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Features\Playback\PlaybackControlsBar\PlaybackControlsBarView.axaml.cs">
       <DependentUpon>PlaybackControlsBarView.axaml</DependentUpon>
     </Compile>
@@ -39,7 +42,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Behaviors\" />
-    <Folder Include="Features\Settings\" />
     <Folder Include="Features\Songs\" />
   </ItemGroup>
 </Project>

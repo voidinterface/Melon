@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 
-namespace Melon.Features.Main;
+namespace Melon;
 
 public partial class MainWindow : Window
 {

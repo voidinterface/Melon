@@ -24,8 +24,6 @@ namespace Melon.Features.Libraries
             //services.AddTransient<IRequestHandler<ScanLibraryCommand, int>, ScanLibraryCommandHandler>();
 
             services.AddTransient<ILibraryScanner, LibraryScanner>();
-
-            services.AddTransient<LibraryViewModel>();
         }
     }
 }

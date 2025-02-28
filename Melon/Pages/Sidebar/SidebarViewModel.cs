@@ -5,12 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace Melon.Features.Libraries
+namespace Melon.Pages.Sidebar
 {
-    public partial class LibraryViewModel : ObservableObject
+    public class SidebarViewModel : ObservableObject
     {
-        [ObservableProperty]
-        private string _path;
 
     }
 }

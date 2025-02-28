@@ -3,13 +3,12 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
-using CommunityToolkit.Mvvm.Messaging;
 using Melon.Features.Playback;
-using Melon.Features.Main;
 using Microsoft.Extensions.DependencyInjection;
 using Melon.Features.Libraries;
 using Melon.Database;
 using Microsoft.EntityFrameworkCore;
+using Melon.Pages;
 
 namespace Melon;
 
@@ -40,7 +39,7 @@ public partial class App : Application
 
         collection.AddPlaybackFeature();
 
-        collection.AddMainFeature();
+        collection.AddPages();
 
         var services = collection.BuildServiceProvider();
         
