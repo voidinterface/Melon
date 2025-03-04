@@ -1,0 +1,29 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:local="clr-namespace:Melon"
+             x:Class="Melon.App"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+	<Application.DataTemplates>
+		<local:ViewLocator/>
+	</Application.DataTemplates>
+	
+    <Application.Styles>
+        <FluentTheme />
+		<StyleInclude Source="Common/Styles/AppDefaultStyles.axaml"/>
+    </Application.Styles>
+
+	<Application.Resources>
+		<SolidColorBrush x:Key="DarkBackground">#141415</SolidColorBrush>
+		<SolidColorBrush x:Key="PrimaryBackground">#1E1E1F</SolidColorBrush>
+
+		<SolidColorBrush x:Key="DarkForeground">#ACACAF</SolidColorBrush>
+		<SolidColorBrush x:Key="PrimaryForeground">#D6D6D6</SolidColorBrush>
+		<SolidColorBrush x:Key="BrightForeground">#EBEBEB</SolidColorBrush>
+
+		<SolidColorBrush x:Key="MelonAccent">#FFA62F</SolidColorBrush>
+
+		<FontFamily x:Key="FontAwesome">/Assets/Fonts/fontawesome/Font Awesome 6 Free-Solid-900.otf#Font Awesome 6 Free Solid</FontFamily>
+	</Application.Resources>
+</Application>

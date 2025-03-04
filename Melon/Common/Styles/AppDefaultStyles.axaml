@@ -1,0 +1,32 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Design.PreviewWith>
+    <Border Padding="20" Background="{DynamicResource PrimaryBackground}" Width="200">
+	<!-- Add Controls for Previewer Here -->
+		<Button HorizontalAlignment="Stretch">
+			<StackPanel Orientation="Horizontal">
+				<Label Classes="fa-icon" Content="&#xf02d;"/>
+				<Label Content="Library"/>
+			</StackPanel>
+
+		</Button>
+    </Border>
+  </Design.PreviewWith>
+
+  <!-- Add Styles Here -->
+	<Style Selector="Button">
+		<Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"></Setter>
+		<Setter Property="Background" Value="{DynamicResource PrimaryBackground}"></Setter>
+		<!--<Setter Property="FontSize" Value="20"></Setter>-->
+	</Style>
+
+	<Style Selector="Label.fa-icon">
+		<Setter Property="FontFamily" Value="{DynamicResource FontAwesome}"></Setter>
+		<Setter Property="Margin" Value="0 3 0 0"></Setter>
+	</Style>
+
+	<Style Selector="Button:pointerover /template/ ContentPresenter">
+		<Setter Property="Foreground" Value="{DynamicResource BrightForeground}"></Setter>
+		<Setter Property="Background" Value="{DynamicResource PrimaryBackground}"></Setter>
+	</Style>
+</Styles>

@@ -1,0 +1,41 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:main="clr-namespace:Melon.Pages"
+			 xmlns:sb="clr-namespace:Melon.Pages.Sidebar"
+			 xmlns:settings="clr-namespace:Melon.Pages.Settings"
+             mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
+             x:Class="Melon.Pages.MainView"
+             x:DataType="main:MainViewModel">
+    <Design.DataContext>
+    <!-- This only sets the DataContext for the previewer in an IDE,
+            to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<main:MainViewModel />
+    </Design.DataContext>
+	<Grid Background="{DynamicResource DarkBackground}">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"></ColumnDefinition>
+			<ColumnDefinition Width="*"></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="Auto"></RowDefinition>
+		</Grid.RowDefinitions>
+
+		<Border Background="{DynamicResource PrimaryBackground}" BorderThickness="5" CornerRadius="5" Grid.Row="0" Grid.Column="0">
+			<sb:SidebarView />
+		</Border>
+
+		<Border Background="{DynamicResource PrimaryBackground}" BorderThickness="5" CornerRadius="5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+			<ContentControl  Content="{Binding PlaybackControlsBar}"/>
+		</Border>
+		
+
+		<Border Background="{DynamicResource PrimaryBackground}" BorderThickness="5" CornerRadius="5" Grid.Row="0" Grid.Column="1">
+			<ContentControl Content="{Binding Settings}"/>
+		</Border>
+	</Grid>
+
+	
+</UserControl>

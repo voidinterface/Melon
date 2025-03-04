@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:main="clr-namespace:Melon.Pages"
+             mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="720"
+             x:Class="Melon.Pages.Sidebar.SidebarView"
+             >
+    <Design.DataContext>
+    <!-- This only sets the DataContext for the previewer in an IDE,
+            to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    </Design.DataContext>
+
+	<Border Padding="20" Background="{DynamicResource PrimaryBackground}">
+		<StackPanel HorizontalAlignment="Left" Width="250">
+			<TextBlock Text="Melon" FontSize="30" FontWeight="Bold" Foreground="{DynamicResource MelonAccent}" Margin="0, 0, 0, 40"/>
+			
+			<Label Foreground="{DynamicResource DarkForeground}" Content="Library"/>
+			
+			<Button Background="{DynamicResource PrimaryBackground}">
+				<Label Margin="10, 0, 0, 0" Content="Tracks"/>
+			</Button>
+			<Button Background="{DynamicResource PrimaryBackground}">
+				<Label Margin="10, 0, 0, 0" Content="Artists"/>
+			</Button>
+			<Button Background="{DynamicResource PrimaryBackground}">
+				<Label Margin="10, 0, 0, 0" Content="Albums"/>
+			</Button>
+		</StackPanel>
+	</Border>
+	
+</UserControl>
