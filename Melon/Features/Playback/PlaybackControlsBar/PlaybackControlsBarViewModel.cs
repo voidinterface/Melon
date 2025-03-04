@@ -19,7 +19,7 @@ namespace Melon.Features.Playback.PlaybackControlsBar
         private bool _isSeeking = false;
 
         [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(PlayCommand))]
+        [NotifyCanExecuteChangedFor(nameof(ResumeCommand))]
         [NotifyCanExecuteChangedFor(nameof(PauseCommand))]
         [NotifyPropertyChangedFor(nameof(IsSeekEnabled))]
         [NotifyPropertyChangedFor(nameof(IsPlayButtonVisible))]
@@ -138,9 +138,9 @@ namespace Melon.Features.Playback.PlaybackControlsBar
         }
 
         [RelayCommand(CanExecute = nameof(CanPlay))]
-        public void Play()
+        public void Resume()
         {
-            _playerService.Play();
+            _playerService.Resume();
         }
 
         public bool IsSeekEnabled => State is PlaybackState.Playing or PlaybackState.Paused;

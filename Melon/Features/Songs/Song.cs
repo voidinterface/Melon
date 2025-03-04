@@ -22,11 +22,6 @@ namespace Melon.Features.Songs
             RelativePath = relativePath;
         }
 
-        public string GetFullPath()
-        {
-            return "";
-        }
-
         public static Song Create(int locationId, string title, string relativePath)
         {
             return new Song(locationId, title, relativePath);

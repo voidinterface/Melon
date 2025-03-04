@@ -26,8 +26,6 @@ namespace Melon.Features.Playback
             set
             {
                 _currentSong = value;
-
-                LoadCurrentSong();
             }
         }
 
@@ -67,7 +65,7 @@ namespace Melon.Features.Playback
             _gain = MaxGain;
         }
 
-        private void LoadCurrentSong()
+        private void LoadSong(String path)
         {
             _state = PlaybackState.Stopped;
             //_messenger.Send(new PlaybackStateChangedMessage(_state));
@@ -77,9 +75,9 @@ namespace Melon.Features.Playback
             audioFile?.Dispose();
 
             //TODO: Handle invalid file paths or null
-            if (CurrentSong?.GetFullPath() == null) return;
+            if (path == null) return;
 
-            audioFile = new AudioFileReader(CurrentSong?.GetFullPath());
+            audioFile = new AudioFileReader(path);
 
             sampleProviderWithGain = new SampleProviderWithGain(this, audioFile);
             outputDevice.Init(sampleProviderWithGain);
@@ -88,7 +86,6 @@ namespace Melon.Features.Playback
             //_messenger.Send(new PlaybackStateChangedMessage(_state));
             PlaybackStateChanged?.Invoke(this, _state);
 
-            Play();
         }
 
         public void Stop()
@@ -107,7 +104,13 @@ namespace Melon.Features.Playback
             }
         }
 
-        public void Play()
+        public void Play(string path)
+        {
+            LoadSong(path);
+            Resume();
+        }
+
+        public void Resume()
         {
             if (_state == PlaybackState.Paused)
             {

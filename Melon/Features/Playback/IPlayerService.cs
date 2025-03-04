@@ -21,6 +21,8 @@ namespace Melon.Features.Playback
 
         public void Stop();
         public void Pause();
-        public void Play();
+        public void Play(string path);
+
+        public void Resume();
     }
 }

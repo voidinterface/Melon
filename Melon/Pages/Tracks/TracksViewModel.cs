@@ -9,6 +9,7 @@ using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MediatR;
+using Melon.Features.Playback.PlaySong;
 using Melon.Features.Songs.GetSongs;
 
 namespace Melon.Pages.Tracks
@@ -44,7 +45,7 @@ namespace Melon.Pages.Tracks
         private async Task PlaySongAsync(SongViewModel song)
         {
             // Play the song
-            Console.WriteLine($"Playing song: {song.Title}");
+            await _mediator.Send(new PlaySongCommand(song.SongId));
         }
     }
 }

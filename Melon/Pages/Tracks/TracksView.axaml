@@ -12,7 +12,7 @@
 			<StackPanel HorizontalAlignment="Left" Width="700">
 				<TextBlock Text="Tracks" FontSize="30" FontWeight="Bold" Foreground="{DynamicResource PrimaryForeground}" Margin="0, 0, 0, 40"/>
 
-				<ListBox ItemsSource="{Binding Songs}">
+				<ListBox ItemsSource="{Binding Songs}" Height="500">
 					<ListBox.ItemTemplate>
 						<DataTemplate>
 							<Grid ColumnDefinitions="*, Auto">
