@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:tracks="clr-namespace:Melon.Pages.Tracks"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Melon.Pages.Tracks.TracksView"
+			 x:DataType="tracks:TracksViewModel">
+
+	<Border Background="{DynamicResource PrimaryBackground}" Padding="20">
+		<Border HorizontalAlignment="Center">
+			<StackPanel HorizontalAlignment="Left" Width="700">
+				<TextBlock Text="Tracks" FontSize="30" FontWeight="Bold" Foreground="{DynamicResource PrimaryForeground}" Margin="0, 0, 0, 40"/>
+
+				<ListBox ItemsSource="{Binding Songs}">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Grid ColumnDefinitions="*, Auto">
+								<TextBlock Grid.Column="0"
+									VerticalAlignment="Center"
+									Text="{Binding Title}"
+									Foreground="{DynamicResource PrimaryForeground}"/>
+								<Button Grid.Column="1"
+									Command="{Binding $parent[ListBox].((tracks:TracksViewModel)DataContext).PlaySongCommand}"
+									CommandParameter="{Binding}">
+									<Label Classes="fa-icon" Content="&#xf04b;"/>
+								</Button>
+							</Grid>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</StackPanel>
+		</Border>
+	</Border>
+	
+</UserControl>

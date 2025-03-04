@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Melon.Pages.Settings;
 using Melon.Pages.Sidebar;
+using Melon.Pages.Tracks;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Melon.Pages
@@ -16,6 +17,7 @@ namespace Melon.Pages
             services.AddSingleton<SettingsViewModel>();
             services.AddSingleton<SidebarViewModel>();
             services.AddSingleton<MainViewModel>();
+            services.AddSingleton<TracksViewModel>();
         }
     }
 }
