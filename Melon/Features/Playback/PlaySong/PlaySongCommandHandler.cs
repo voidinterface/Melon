@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -31,7 +32,7 @@ namespace Melon.Features.Playback.PlaySong
                 return;
             }
 
-            _service.Play(library.Path + song.RelativePath);
+            _service.Play(Path.Combine(library.Path, song.RelativePath));
         }
     }
 }

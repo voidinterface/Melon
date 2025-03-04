@@ -43,7 +43,8 @@ namespace Melon.Features.Locations.WatchLocations
             var watcher = new LocationFileWatcher(location.Path)
             {
                 Filter = "*.mp3",
-                IncludeSubdirectories = true
+                IncludeSubdirectories = true,
+                LocationId = location.Id
             };
             watcher.Created += OnUpdated;
             watcher.Deleted += OnUpdated;

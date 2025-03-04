@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Melon.Common.Entities;
+using Melon.Features.Songs.DomainEvents;
 
 namespace Melon.Features.Songs
 {
@@ -22,9 +23,16 @@ namespace Melon.Features.Songs
             RelativePath = relativePath;
         }
 
+        public void Delete()
+        {
+            AddDomainEvent(new SongDeletedDomainEvent(this));
+        }
+
         public static Song Create(int locationId, string title, string relativePath)
         {
-            return new Song(locationId, title, relativePath);
+            var song = new Song(locationId, title, relativePath);
+            song.AddDomainEvent(new SongCreatedDomainEvent(song));
+            return song;
         }
     }
 }

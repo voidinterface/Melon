@@ -22,21 +22,26 @@ namespace Melon.Features.Songs.ScanForSongs
         public async Task Handle(LocationScanRequestedDomainEvent notification, CancellationToken cancellationToken)
         {
             var location = notification.Location;
-            var songs = new List<Song>();
+            
+            var songFiles = new HashSet<string>(
+                Directory.EnumerateFiles(location.Path, "*.mp3", SearchOption.AllDirectories));
 
-            foreach (var file in Directory.EnumerateFiles(location.Path, "*.mp3", SearchOption.AllDirectories))
+            var storedSongs = await _db.Songs.ToListAsync(cancellationToken: cancellationToken);
+            var storedSongFiles = new HashSet<string>(storedSongs.Select(s => Path.Combine(location.Path, s.RelativePath)));
+
+            var newSongs = songFiles
+                .Except(storedSongFiles)
+                .Select(f => Song.Create(location.Id, Path.GetFileNameWithoutExtension(f), Path.GetRelativePath(location.Path, f)));
+
+            var deletedSongs = storedSongFiles.Except(songFiles).Select(f => storedSongs.First(s => Path.Combine(location.Path, s.RelativePath) == f));
+            foreach (var song in deletedSongs)
             {
-                var relativePath = file[location.Path.Length..];
-
-                if (await _db.Songs.AnyAsync(s => s.LocationId == location.Id && s.RelativePath == relativePath, cancellationToken: cancellationToken))
-                {
-                    continue;
-                }
-
-                songs.Add(Song.Create(location.Id, Path.GetFileNameWithoutExtension(file), relativePath));
+                song.Delete();
+                _db.Songs.Remove(song);
             }
 
-            _db.Songs.AddRange(songs);
+
+            _db.Songs.AddRange(newSongs);
             await _db.SaveChangesAsync(cancellationToken);
         }
     }
